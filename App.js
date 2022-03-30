@@ -1,26 +1,20 @@
 import { React, useState } from 'react';
 import { StyleSheet, Text, View, Button, Linking } from 'react-native';
 
-//* state é mutável e o props não é */}
+// state é mutável e o props não é
 
 export default function App() {
-  const [name,setName] = useState('Avatar 1')
-  const [session,setSession] = useState({number: 6, title: "The Batman"}) //{/* troca todos os valores */}
-  const [current,setCurrent] = useState(true)
+  const [atualizado,setAtualizado] = useState('me atualiza')
 
-  const onClickHandler = () => { //* troca todos os valores */}
-    setName('Avatar 2')
-    setSession({number: 7, title: 'Jujutsu Kaisen 0'})
-    setCurrent(false)
+  const onClickHandler = () => {
+    setAtualizado('atualizei')
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}> Bem vindo(a), {name}! </Text>
-      <Text style={styles.text}> Seu filme, {session.title},  está na sessão {session.number}. </Text>
-      <Text style={styles.text}> {current ? 'Ele está sendo exibido agora.' : 'empresa te enganoukkjkk'} </Text> {/* ? = if / : = else*/}
-
-      <Button style={styles.button} title="não sou eu" onPress={onClickHandler} />
+      <Text style={styles.text}> tá sabendo da fofoca? </Text>
+      <Text style={styles.text}> {atualizado} </Text>
+      <Button style={styles.button} title="me conta" onPress={onClickHandler} />
     </View>
   );
 }
