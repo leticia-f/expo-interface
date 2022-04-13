@@ -25,7 +25,7 @@ const App = () => {
 
   const onRefresh = () => {
     setRefreshing(true);
-    setItems([...Items, { key: 69, item: 'Item 69' }]);
+    setItems([...Items, { key: 69, personagem: 'Item 69' }]);
     setRefreshing(false);
   }
   {/*ESTE CÓDIGO SÓ ATUALIZA PELO CELULAR, ELE ADICIONA O ITEM 69 QUANDO FOR RECOMPILADO*/}
