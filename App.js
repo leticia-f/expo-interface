@@ -8,7 +8,6 @@ import {
   SafeAreaView,
   FlatList,
   Image,
-  Text
 } from 'react-native';
 
 export default function App() {
@@ -21,21 +20,29 @@ export default function App() {
       .then(response => response.json())
       .then(data => {
         data.forEach(movie => {
-          console.log(movie.title);
-          console.log(movie.original_title);
-          console.log(movie.image);
-          console.log(movie.description);
-          console.log(movie.release_date);
+          console.log(movie);
+          setAllMovies(movie)
         })
       })
       .catch(err => {
         console.log(err);
       })
 
-  },[])
+  }, [])
 
-  return(
-    <View> My App </View>
+  return (
+    <View>
+      <Flatlist
+        data={allMovies}
+        keyExtractor={(movie) => movie.title}
+        renderItem={MovieShow}
+      />
+    </View>
   )
 
 }
+
+function MovieShow(item){
+  const{title,original_title,banner,description,director,release_date} = item.item
+}
+
