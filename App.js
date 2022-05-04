@@ -1,78 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
   Text,
   ScrollView,
   RefreshControl,
+  SafeAreaView,
+  FlatList,
+  Image,
+  Text
 } from 'react-native';
 
-const App = () => {
+export default function App() {
 
-  const [Items, setItems] = useState([
-    {key: 1, personagem: 'Ai Ohto',         midia: 'Wonder Egg Priority'},
-    {key: 2, personagem: 'Kyoka Jiro',      midia: 'Boku no Hero'},
-    {key: 3, personagem: 'Gin Akutagawa',   midia: 'Bungo Stray Dogs'},
-    {key: 4, personagem: 'Chuuya Nakahara', midia: 'Bungo Stray Dogs'},
-    {key: 5, personagem: 'Sakura Ogami',    midia: 'Trigger Happy Havoc'},
-    {key: 6, personagem: 'Mahiru Koizumi',  midia: 'Goodbye Despair'},
-    {key: 7, personagem: 'Yanfei',          midia: 'Genshin Impact'},
-    {key: 8, personagem: 'Albedo',         midia: 'Genshin Impact'},
-    {key: 9, personagem: 'Seele Vollerei',  midia: 'Honkai Impact'},
-    {key: 10, personagem: 'Shinobu Kocho',   midia: 'Demon Slayer'},
-  ]);
-  const [Refreshing, setRefreshing] = useState(false);
+  const [allMovies, setAllMovies] = useState([]) // chamar função para mudar
 
-  const onRefresh = () => {
-    setRefreshing(true);
-    setItems([...Items, { key: 69, personagem: 'Item 69' }]);
-    setRefreshing(false);
-  }
-  {/*ESTE CÓDIGO SÓ ATUALIZA PELO CELULAR, ELE ADICIONA O ITEM 69 QUANDO FOR RECOMPILADO*/}
-  return (
-    <ScrollView
-      style={styles.body}
-      refreshControl={
-        <RefreshControl
-          refreshing={Refreshing}
-          onRefresh={onRefresh}
-          colors={['#449f']}
-        />
-      }
-    >
-      {
-        Items.map((object) => {
-          return (
-            <View style={styles.item} key={object.key}>
-              <Text style={styles.text}>
-                personagem fav: {object.personagem} <br/>
-                anime/jogo: {object.midia}</Text>
-            </View>
-          )
+  useEffect(() => {
+
+    fetch('https://ghibliapi.herokuapp.com/films')
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(movie => {
+          console.log(movie.title);
+          console.log(movie.original_title);
+          console.log(movie.image);
+          console.log(movie.description);
+          console.log(movie.release_date);
         })
-      }
-    </ScrollView>
-  );
-};
+      })
+      .catch(err => {
+        console.log(err);
+      })
 
-const styles = StyleSheet.create({
-  body: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fff',
-  },
-  item: {
-    margin: 10,
-    backgroundColor: '#449f',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    color: '#fff',
-    fontSize: 30,
-    fontStyle: 'italic',
-    margin: 10,
-  },
-});
+  },[])
 
-export default App;
+  return(
+    <View> My App </View>
+  )
+
+}
