@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView, View, FlatList, Image, Text, StyleSheet } from 'react-native'
+import { styles } from './components/meusEstilos/styleRN'
+import { TextoPrincipal, Quadro, TextoAdicional, TextoOriginal } from './components/meusEstilos/styledComponents'
+import { AiOutlineInfoCircle } from "react-icons/ai"
+import QuadroFinal from './components/Quadro'
 
 export default function App() {
 
   const [allMovies, setAllMovie] = useState([])
 
   useEffect(() => {
-
     // fetch busca os dados no site
     // then response vai transformar resposta em um json
     // then data vai formatar os dados listando/mapeando o array
-
     fetch('https://ghibliapi.herokuapp.com/films')
       .then(response => response.json())
       .then(data => {
@@ -33,49 +35,48 @@ export default function App() {
   }, [])
 
   return (
-
     <View style={styles.body}>
       {/* flatlist exibe uma sequência de imagens */}
 
-      <Text style={styles.titulo} > Studio Ghibli </Text>
+      <TextoPrincipal style={styles.textoPrincipal}>Ghibli Movies</TextoPrincipal>
       <FlatList
         data={allMovies}
-        renderItem={({ item }) =>  // atributo e item nos parênteses, respectivamente
-          // item (objeto) representa movie
-          // chave dentro de parênteses - desestruturação
-          <View>
-            <Text> {item.title} </Text> {/* puxar atributo, obj chamado item */}
-            <Text> {item.original_title} </Text>
-            <Image
-              style={{ width: 196, height: 294 }}
-              source={{ uri: item.image }} 
-              /> {/* uri é local */}
-            <Text> {item.description} </Text>
-            <Text> Ano de lançamento: {item.release_date} </Text>
-            <Text style={styles.end} > Direção: {item.director} </Text>
-          </View>
+        renderItem={({ item }) => // para cada item, renderiza quadro
+          <>
+            <QuadroFinal item={item}/>
+          </>
         }
       />
-
     </View>
-
   )
 }
 
-function MovieShow(item) {
-  const { title, description, image } = item.item
-}
 
-const styles=StyleSheet.create({
-  body:{
-    backgroundColor: '#FFF',
-    alignItems: 'center',
-  },
-  titulo:{
-    fontSize: 40,
-    padding: 20,
-  },
-  end:{
-    paddingBottom: 20,
-  },
-});
+
+
+// <View style={styles.body}>
+    //   {/* flatlist exibe uma sequência de imagens */}
+
+    //   <Text style={styles.titulo} > Studio Ghibli </Text>
+    //   <FlatList
+    //     data={allMovies}
+    //     renderItem={({ item }) =>  // atributo e item nos parênteses, respectivamente
+    //       // item (objeto) representa movie
+    //       // chave dentro de parênteses - desestruturação
+    //       <View style={styles.body}>
+    //         <View>
+    //           <Text> {item.title} </Text> {/* puxar atributo, obj chamado item */}
+    //           <Text> {item.original_title} </Text>
+    //           <Image
+    //             style={{ width: 196, height: 294 }}
+    //             source={{ uri: item.image }}
+    //           /> {/* uri é local */}
+    //           <Text> {item.description} </Text>
+    //           <Text> Ano de lançamento: {item.release_date} </Text>
+    //           <Text style={styles.end} > Direção: {item.director} </Text>
+    //         </View>
+    //       </View>
+    //     }
+    //   />
+
+    // </View>
