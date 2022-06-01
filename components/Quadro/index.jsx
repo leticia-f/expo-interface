@@ -5,6 +5,7 @@ import { View, Text, Image } from 'react-native'
 import { TextoAdicional, TextoOriginal } from '../meusEstilos/styledComponents'
 import { AiOutlineInfoCircle } from "react-icons/ai"
 
+
 function QuadroFinal(props) {
     return (
         <>
