@@ -35,4 +35,32 @@ export const styles = StyleSheet.create({
         marginBottom:30,
         fontFamily: 'Montserrat-Medium',
     },
+    boxDescription: {
+        backgroundColor: '#2b4245',
+        margin: 10,
+        padding: 18,
+    },
+    bodyEscolhido: {
+        padding: 30,
+        paddingTop: 150,
+        alignItems:"center",
+        flex: 1,
+        backgroundColor: '#3A585C',
+    },
+    textEscolhidoTitle: {
+        color: '#FFF',
+        fontSize: 40,
+        margin: 15,
+    },
+    textEscolhidoDescription: {
+        color: '#FFF',
+        fontSize: 20,
+    },
+    textEscolhidoInfo: {
+        color: '#FFF',
+        fontSize: 20,
+    },
+    desescolher: {
+        backgroundColor: '#3A585C',
+    },
 });

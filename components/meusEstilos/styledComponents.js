@@ -21,3 +21,9 @@ export const TextoOriginal = styled.Text`
     margin-bottom:15px;
     text-align:center;
 `;
+export const TextoReturn = styled.Text`
+    font-size:15px;
+    color:#fff;
+    margin-bottom:15px;
+    text-align:center;
+`;

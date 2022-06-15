@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Quadro } from '../meusEstilos/styledComponents'
 import { styles } from '../meusEstilos/styleRN'
-import { View, Text, Image } from 'react-native'
-import { TextoAdicional, TextoOriginal } from '../meusEstilos/styledComponents'
+import { View, Text, Image, Modal } from 'react-native'
+import { TextoAdicional, TextoOriginal, TextoReturn } from '../meusEstilos/styledComponents'
 import { AiOutlineInfoCircle } from "react-icons/ai"
-
+import { TouchableOpacity } from 'react-native-web'
+import Escolhido from '../escolhido/index'
 
 function QuadroFinal(props) {
+    const [escolhido, setEscolhido] = useState("");
     return (
         <>
             <Quadro style={styles.body}>
@@ -19,10 +21,19 @@ function QuadroFinal(props) {
                         style={{ width: 196, height: 294 }}
                         source={{ uri: props.item.image }}
                     />
-                    <TextoAdicional style={styles.textData}>{props.item.release_date}</TextoAdicional>
-                    <AiOutlineInfoCircle style={styles.icon} name="icon" size={25} />
+                    <TouchableOpacity onPress={() => setEscolhido(props.item)}>
+                        <AiOutlineInfoCircle style={styles.icon} name="icon" size={25} />
+                    </TouchableOpacity>
                 </View>
             </Quadro>
+            <Modal visible={escolhido}>
+                    <Escolhido escolhido={escolhido} />
+                    <TouchableOpacity onPress={() => setEscolhido("")}>
+                        <View style={styles.desescolher}>
+                            <TextoReturn style={styles.text}> Voltar </TextoReturn>
+                        </View>
+                    </TouchableOpacity>
+            </Modal>
         </>
     )
 }

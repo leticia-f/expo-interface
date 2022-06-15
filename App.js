@@ -23,6 +23,8 @@ export default function App() {
           console.log(movie.description)
           console.log(movie.release_date)
           console.log(movie.director)
+          console.log(movie.running_time)
+          console.log(movie.rt_score)
         })
 
         setAllMovie(data); // usando data em vez de movie porque o arquivo/resposta
